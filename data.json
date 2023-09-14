@@ -1,0 +1,50 @@
+[
+  {
+    "model": "school.course",
+    "pk": 1,
+    "fields": {
+      "title": "Основы программирования",
+      "image": "course_image/введение.png",
+      "description": "В этом курсе вы узнаете, что такое программирование и с чем его едят"
+    }
+  },
+  {
+    "model": "school.lessons",
+    "pk": 1,
+    "fields": {
+      "title": "1.1 Что такое языки программирования",
+      "image": "lessons_image/языки.png",
+      "description": "Это первый урок курса \"Основы программирования\". В этом уроке мы вам расскажем, какие языки программирования бывают и зачем нужды.",
+      "link": "https://www.youtube.com/watch?v=PS4S8BnURYU",
+      "course": 1
+    }
+  },
+  {
+    "model": "school.lessons",
+    "pk": 2,
+    "fields": {
+      "title": "1.2 Основы Python",
+      "image": "lessons_image/питон.png",
+      "description": "Это второй урок курса \"Основы программирования\". В этом уроке мы поподробнее рассмотрим язык программирования Python. Познакомимся с его основами и попробуем выполнить самые простые задачи.",
+      "link": "https://www.youtube.com/watch?v=fp5-XQFr_nk",
+      "course": 1
+    }
+  },
+  {
+    "model": "school.tests",
+    "pk": 1,
+    "fields": {
+      "course": 1,
+      "description": "Это тест по курсу \"Основы программирования\". Здесь вы сможете закрепить свои знания, ответив на несколько вопросов."
+    }
+  },
+  {
+    "model": "school.questions",
+    "pk": 1,
+    "fields": {
+      "test": 1,
+      "question": "С помощью какого оператора мы можем вывести текст?",
+      "answer": "print()"
+    }
+  }
+]
