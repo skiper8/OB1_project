@@ -48,8 +48,8 @@ class Tests(models.Model):
 
 class Questions(models.Model):
     test = models.ForeignKey(Tests, verbose_name='по какой лекции тест', on_delete=models.CASCADE, **NULLABLE)
-    question = models.TextField(verbose_name='вопрос', **NULLABLE)
-    answer = models.TextField(verbose_name='ответ на вопрос', **NULLABLE)
+    question = models.CharField(max_length=50,verbose_name='вопрос', **NULLABLE)
+    answer = models.CharField(max_length=40, verbose_name='ответ на вопрос', **NULLABLE)
 
     def __str__(self):
         return f'Вопрос {self.question}'

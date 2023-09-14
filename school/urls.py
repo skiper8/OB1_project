@@ -23,5 +23,5 @@ urlpatterns = [
 
     # Tests
     path('tests/', TestsAPIView.as_view(), name='tests-list'),
-    path('tests1/', QuestionsAPIView.as_view(), name='test-1'),
+    path('tests/test/', QuestionsAPIView.as_view(), name='test-1'),
 ]
