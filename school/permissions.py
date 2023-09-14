@@ -7,9 +7,3 @@ class IsStaff(BasePermission):
         if request.user.is_staff:
             return True
 
-
-class IsOwner(BasePermission):
-
-    def has_permission(self, request, view):
-        return request.user == view.get_object().owner
-
