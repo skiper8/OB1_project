@@ -29,7 +29,7 @@ class CourseTestCase(APITestCase):
             'title': 'course_test',
             'description': 'test test'
         }
-        response = self.client.post(self.url_course, data=data)
+        response = self.client.post(f'{self.url_course}create/', data=data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_get_course(self):
@@ -38,8 +38,8 @@ class CourseTestCase(APITestCase):
         response = self.client.get(f'{self.url_course}2/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json(),
-                         {'id': 2, 'lesson_count': 0, 'lessons': [], 'subscribe': [], 'title': 'course_test',
-                          'image': None, 'description': 'test test'})
+                         {'id': 2, 'lesson_count': 0, 'lessons': [], 'title': 'course_test', 'image': None,
+                          'description': 'test test'})
 
     def test_list_course(self):
         """Тест листа модели Course"""
@@ -48,10 +48,9 @@ class CourseTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.json(),
                          {'count': 1, 'next': None, 'previous': None, 'results': [
-                             {'id': 3, 'lesson_count': 0, 'title': 'course_test',
-                              'image': None, 'description': 'test test'}]}
+                             {'id': 3, 'lesson_count': 0, 'lessons': [], 'title': 'course_test', 'image': None,
+                              'description': 'test test'}]}
                          )
-
 
 class LessonsTestCase(APITestCase):
     def setUp(self):
@@ -77,7 +76,7 @@ class LessonsTestCase(APITestCase):
             'title': 'course_test',
             'description': 'test test'
         }
-        response_course = self.client.post(self.url_course, data=data)
+        response_course = self.client.post(f'{self.url_course}create/', data=data)
 
         response_lessons = self.client.post(f'{self.url_lessons}create/',
                                             {'course': 4, 'title': 'lessons_test', 'description': 'test test',
@@ -94,7 +93,7 @@ class LessonsTestCase(APITestCase):
             'title': 'course_test',
             'description': 'test test'
         }
-        response_course = self.client.post(self.url_course, data=data)
+        response_course = self.client.post(f'{self.url_course}create/', data=data)
 
         response_lessons = self.client.post(f'{self.url_lessons}create/',
                                             {'course': 5, 'title': 'lessons_test', 'description': 'test test',
