@@ -67,16 +67,13 @@ class TestsAPIView(generics.ListAPIView):
 class QuestionsAPIView(APIView):
     serializer_class = QuestionsSerializer
     queryset = Questions.objects.all()
-
     def get(self, request):
         question = [Questions.question for Questions in Questions.objects.all()]
-        return Response(question)
+        return Response({'questions': question})
 
-    def post(self, *args, **kwargs):
-        answer = [Questions.answer for Questions in Questions.objects.all()]
-        user_answer = requests.post('answer')
+    def post(self, request, *args, **kwargs):
+        answer = 'print'
+        user_answer = request.data.get('user_answer')
 
-        if answer == user_answer:
-            return Response('Верно!', status.HTTP_200_OK)
-        else:
-            return Response('Неверно!', status.HTTP_200_OK)
+        is_correct = user_answer == answer
+        return Response({'is_correct': is_correct})
