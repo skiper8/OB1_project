@@ -14,7 +14,7 @@ class CourseTestCase(APITestCase):
             email='test@yandex.ru',
             first_name='Test',
             last_name='Test',
-            is_staff=False,
+            is_staff=True,
             is_superuser=False
         )
 
