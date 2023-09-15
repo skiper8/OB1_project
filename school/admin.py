@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from school.models import Course, Lessons, Tests, Questions
+from school.models import Course, Lessons, Tests, Questions, Answers
+
 
 @admin.register(Course)
 class BlogAdmin(admin.ModelAdmin):
@@ -25,7 +26,12 @@ class TestsAdmin(admin.ModelAdmin):
 
 @admin.register(Questions)
 class QuestionsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'test', 'question', 'answer')
+    list_display = ('id', 'test', 'question')
     search_fields = ('test',)
     list_filter = ('test',)
 
+
+@admin.register(Answers)
+class QuestionsAdmin(admin.ModelAdmin):
+    list_display = ('id', 'question', 'answer')
+    list_filter = ('id',)

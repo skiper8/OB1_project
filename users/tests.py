@@ -1,3 +1,20 @@
-from django.test import TestCase
+from rest_framework.test import APITestCase, APIClient
+from rest_framework import status
+from users.models import User
+from rest_framework.test import APITestCase
 
-# Create your tests here.
+
+class UsersTestCase(APITestCase):
+    """Тесты модели Course"""
+
+    def setUp(self):
+        self.url_users = '/users/'
+
+    def test_create_users(self):
+        """Тест создания модели User"""
+        data = {
+            'email': 'testuser@yandex.ru',
+            'password': 'test456'
+        }
+        response = self.client.post(f'{self.url_users}create/', data=data)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
