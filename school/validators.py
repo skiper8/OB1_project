@@ -1,9 +1,8 @@
-import re
-
 from rest_framework.exceptions import ValidationError
 
 
 class LinkValidator:
+    """Ограничение на модель Lessons не позволяющее вставлять ссылки не из источника youtube.com"""
 
     def __init__(self, field):
         self.fields = field

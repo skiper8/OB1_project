@@ -1,10 +1,12 @@
 from rest_framework import serializers
 
-from school.models import Course, Lessons, Tests, Questions
+from school.models import Course, Lessons, Tests, Questions, Answers
 from school.validators import LinkValidator
 
 
 class LessonsSerializer(serializers.ModelSerializer):
+    """ Cериализатор для контроллеров Lessons """
+
     class Meta:
         model = Lessons
         fields = '__all__'
@@ -12,6 +14,8 @@ class LessonsSerializer(serializers.ModelSerializer):
 
 
 class CourseSerializer(serializers.ModelSerializer):
+    """ Cериализатор для контроллеров Course """
+
     lesson_count = serializers.SerializerMethodField()
     lessons = LessonsSerializer(many=True, read_only=True, source='lessons_set')
 
@@ -24,18 +28,24 @@ class CourseSerializer(serializers.ModelSerializer):
 
 
 class QuestionsSerializer(serializers.ModelSerializer):
+    """ Cериализатор для контроллеров Questions """
+
     class Meta:
         model = Questions
         fields = '__all__'
 
 
 class AnswersSerializer(serializers.ModelSerializer):
+    """ Cериализатор для контроллеров Answers """
+
     class Meta:
-        model = Questions
+        model = Answers
         fields = '__all__'
 
 
 class TestsSerializer(serializers.ModelSerializer):
+    """ Cериализатор для контроллеров Tests """
+
     class Meta:
         model = Tests
         fields = '__all__'

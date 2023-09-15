@@ -2,7 +2,9 @@ from django.urls import path
 
 from school.apps import SchoolConfig
 
-from school.views import *
+from school.views import LessonsCreateAPIView, LessonsListAPIView, LessonsRetrieveAPIView, LessonsUpdateAPIView, \
+    LessonsDestroyAPIView, CourseCreateAPIView, CourseListAPIView, CourseRetrieveAPIView, CourseUpdateAPIView, \
+    CourseDestroyAPIView, TestsListAPIView, TestsRetrieveAPIView, QuestionsAPIView
 
 app_name = SchoolConfig.name
 
