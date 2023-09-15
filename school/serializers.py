@@ -23,13 +23,19 @@ class CourseSerializer(serializers.ModelSerializer):
         return Lessons.objects.filter(course=obj).count()
 
 
+class QuestionsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Questions
+        fields = '__all__'
+
+
+class AnswersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Questions
+        fields = '__all__'
+
+
 class TestsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tests
         fields = '__all__'
-
-
-class QuestionsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Questions
-        fields = ('answer',)

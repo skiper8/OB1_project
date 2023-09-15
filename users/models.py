@@ -1,28 +1,34 @@
-from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
 
-NULLABLE: dict[str, bool] = {'blank': True, 'null': True}
+NULLABLE = {'blank': True, 'null': True}
+
+
+class UserRoles(models.TextChoices):
+    """Class need for different level of permission, it depends of User.role /
+    Класс необходимый для различных уровней доступа, доступ зависит от User.role"""
+    MEMBER = 'member', _('member')
+    MODERATOR = 'moderator', _('moderator')
 
 
 class User(AbstractUser):
+    """User model / Модель User"""
     username = None
-    email = models.EmailField(unique=True, verbose_name='почта')
+    email = models.EmailField(unique=True, verbose_name='email')
+    role = models.CharField(max_length=9, choices=UserRoles.choices, default=UserRoles.MEMBER)
+    first_name = models.CharField(max_length=150, verbose_name='First Name', **NULLABLE)
+    last_name = models.CharField(max_length=150, verbose_name='Last Name', **NULLABLE)
+    phone = models.CharField(max_length=35, verbose_name='Phone Number', **NULLABLE)
+    is_active = models.BooleanField(default=True, verbose_name="Active")
 
-    avatar = models.ImageField(upload_to='user_avatar/', verbose_name='аватар', **NULLABLE)
-    phone = models.CharField(max_length=35, verbose_name='телефон', **NULLABLE)
-    country = models.CharField(max_length=150, verbose_name='страна', **NULLABLE)
-    is_active = models.BooleanField(default=True)
-    token = models.CharField(max_length=200, verbose_name='токен', **NULLABLE)
-
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
     def __str__(self):
-        return self.email
+        return f'{self.email}'
 
     class Meta:
-        verbose_name = 'пользователь'
-        verbose_name_plural = 'пользователи'
-        ordering = ('email',)
-
-
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
+        ordering = ['is_active',]

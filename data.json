@@ -43,8 +43,31 @@
     "pk": 1,
     "fields": {
       "test": 1,
-      "question": "С помощью какого оператора мы можем вывести текст?",
-      "answer": "print()"
+      "question": "С помощью какого оператора мы можем вывести текст?"
+    }
+  },
+  {
+    "model": "school.questions",
+    "pk": 2,
+    "fields": {
+      "test": 1,
+      "question": "Какой оператор проверяет тип переменной?"
+    }
+  },
+  {
+    "model": "school.answers",
+    "pk": 1,
+    "fields": {
+      "question": 1,
+      "answer": "print"
+    }
+  },
+  {
+    "model": "school.answers",
+    "pk": 2,
+    "fields": {
+      "question": 2,
+      "answer": "type"
     }
   }
 ]
