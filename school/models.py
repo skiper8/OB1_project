@@ -48,8 +48,7 @@ class Tests(models.Model):
 
 class Questions(models.Model):
     test = models.ForeignKey(Tests, verbose_name='по какой лекции тест', on_delete=models.CASCADE, **NULLABLE)
-    question = models.CharField(max_length=50,verbose_name='вопрос', **NULLABLE)
-    answer = models.CharField(max_length=40, verbose_name='ответ на вопрос', **NULLABLE)
+    question = models.CharField(max_length=50, verbose_name='вопрос', **NULLABLE)
 
     def __str__(self):
         return f'Вопрос {self.question}'
@@ -58,3 +57,15 @@ class Questions(models.Model):
         verbose_name = 'вопрос'
         verbose_name_plural = 'вопросы'
         ordering = ('test',)
+
+
+class Answers(models.Model):
+    question = models.ForeignKey(Questions, verbose_name='Вопрос', on_delete=models.CASCADE, **NULLABLE)
+    answer = models.CharField(max_length=40, verbose_name='ответ на вопрос', **NULLABLE)
+
+    def __str__(self):
+        return f'Ответ на вопрос {self.question}'
+
+    class Meta:
+        verbose_name = 'ответ'
+        verbose_name_plural = 'ответы'
