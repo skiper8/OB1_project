@@ -2,11 +2,11 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView,
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from school.permissions import IsStaff
-from users.serializers import *
+from users.serializers import UserSerializer, UserCreateSerializer, UserTokenObtainPairSerializer
 
 from users.models import User
 
-""" Add CRUD endpoints for Model User / Добавлен CRUD для модели User """
+""" CRUD для модели User """
 
 
 class UserListAPIView(ListAPIView):

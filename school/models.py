@@ -4,6 +4,8 @@ NULLABLE: dict[str, bool] = {'blank': True, 'null': True}
 
 
 class Course(models.Model):
+    """ Модель курса """
+
     title = models.CharField(max_length=50, verbose_name='название курса', **NULLABLE)
     image = models.ImageField(upload_to='course_image/', verbose_name='изображение для курса', **NULLABLE)
     description = models.TextField(verbose_name='описание', **NULLABLE)
@@ -18,6 +20,8 @@ class Course(models.Model):
 
 
 class Lessons(models.Model):
+    """ Модель лекций """
+
     title = models.CharField(max_length=50, verbose_name='название лекции', **NULLABLE)
     image = models.ImageField(upload_to='lessons_image/', verbose_name='изображение для лекции', **NULLABLE)
     description = models.TextField(verbose_name='описание', **NULLABLE)
@@ -34,6 +38,8 @@ class Lessons(models.Model):
 
 
 class Tests(models.Model):
+    """ Модель тестов для курсов """
+
     course = models.ForeignKey(Course, verbose_name='по какой лекции тест', on_delete=models.CASCADE, **NULLABLE)
     description = models.TextField(verbose_name='описание теста', **NULLABLE)
 
@@ -47,6 +53,8 @@ class Tests(models.Model):
 
 
 class Questions(models.Model):
+    """ Модель вопросов к тестам """
+
     test = models.ForeignKey(Tests, verbose_name='по какой лекции тест', on_delete=models.CASCADE, **NULLABLE)
     question = models.CharField(max_length=50, verbose_name='вопрос', **NULLABLE)
 
@@ -60,6 +68,8 @@ class Questions(models.Model):
 
 
 class Answers(models.Model):
+    """ Модель ответов к вопросам """
+
     question = models.ForeignKey(Questions, verbose_name='Вопрос', on_delete=models.CASCADE, **NULLABLE)
     answer = models.CharField(max_length=40, verbose_name='ответ на вопрос', **NULLABLE)
 

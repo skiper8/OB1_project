@@ -3,11 +3,10 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from users.models import User
 
-"""Add serializers for User views
-(Добавлены сериализаторы для контроллеров User)"""
-
 
 class UserSerializer(serializers.ModelSerializer):
+    """ Cериализатор для контроллеров User """
+
     class Meta:
         model = User
         fields = '__all__'

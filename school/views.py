@@ -9,6 +9,8 @@ from school.permissions import IsStaff
 from school.serializers import CourseSerializer, LessonsSerializer, TestsSerializer, AnswersSerializer, \
     QuestionsSerializer
 
+""" CRUD для моделей Course, Lessons, Tests, Questions, Answers """
+
 
 class CourseCreateAPIView(generics.CreateAPIView):
     serializer_class = CourseSerializer
@@ -75,9 +77,16 @@ class TestsListAPIView(generics.ListAPIView):
 
 
 class TestsRetrieveAPIView(generics.RetrieveAPIView):
-    serializer_class = TestsSerializer
-    queryset = Tests.objects.all()
+    serializer_class = QuestionsSerializer
+    queryset = Questions.objects.all()
     permission_classes = [IsAuthenticated]
+
+    def post(self, request) -> Response:
+        answer = [Answers.answer for Answers in Answers.objects.all()]
+        user_answer = request.data.get('user_answer')
+
+        is_correct = user_answer == answer
+        return Response({'is_correct': is_correct}, )
 
 
 class QuestionsAPIView(APIView):
