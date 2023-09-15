@@ -34,7 +34,7 @@
     - POSTGRES_HOST='127.0.0.1'
     - POSTGRES_PORT=/обычно это'5432'/
 
-    - SECRET_KEY=/ключ Django из файла settings/
+    - SECRET_KEY=/ключ Django из файла config.settings/
 
 ### 4. Для создания администратора (createsuperuser)
 
