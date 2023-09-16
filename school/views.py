@@ -6,8 +6,7 @@ from rest_framework.response import Response
 from school.models import Course, Lessons, Tests, Questions, Answers
 from school.paginators import CoursePaginator, LessonsPaginator
 from school.permissions import IsStaff
-from school.serializers import CourseSerializer, LessonsSerializer, TestsSerializer, AnswersSerializer, \
-    QuestionsSerializer
+from school.serializers import CourseSerializer, LessonsSerializer, TestsSerializer, QuestionsSerializer
 
 """ CRUD для моделей Course, Lessons, Tests, Questions, Answers """
 
@@ -82,9 +81,9 @@ class TestsRetrieveAPIView(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request) -> Response:
-        answer = [Answers.answer for Answers in Answers.objects.all()]
+        answers = [Answers.answer for Answers in Answers.objects.all()]
+        answer = answers[self.kwargs.get('pk') - 1].lower()
         user_answer = request.data.get('user_answer')
-
         is_correct = user_answer == answer
         return Response({'is_correct': is_correct}, )
 

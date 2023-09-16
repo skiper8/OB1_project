@@ -9,4 +9,3 @@ class UsersAdmin(admin.ModelAdmin):
     list_display = ('id', 'email', 'is_active',)
     list_filter = ('id', 'email',)
     ordering = ('is_active',)
-

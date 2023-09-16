@@ -1,6 +1,4 @@
-from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
-from school.models import Course, Lessons
 from users.models import User
 from rest_framework.test import APITestCase, APIClient
 
@@ -51,6 +49,7 @@ class CourseTestCase(APITestCase):
                              {'id': 3, 'lesson_count': 0, 'lessons': [], 'title': 'course_test', 'image': None,
                               'description': 'test test'}]}
                          )
+
 
 class LessonsTestCase(APITestCase):
     def setUp(self):
