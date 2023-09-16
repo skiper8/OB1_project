@@ -40,7 +40,7 @@ class AnswersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answers
-        fields = '__all__'
+        fields = ('answer',)
 
 
 class TestsSerializer(serializers.ModelSerializer):
