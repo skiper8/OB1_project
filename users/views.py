@@ -2,7 +2,7 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveAPIView,
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import IsAuthenticated
 from school.permissions import IsStaff
-from users.serializers import UserSerializer, UserCreateSerializer, UserTokenObtainPairSerializer
+from users.serializers import UserSerializer, UserCreateSerializer, UserTokenObtainPairSerializer, UserUpdateSerializer
 
 from users.models import User
 
