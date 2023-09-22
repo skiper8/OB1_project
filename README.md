@@ -30,18 +30,18 @@
         - python manage.py migrate
         - python3 manage.py loaddata data.json
 
-### 4. Для работы с переменными окружениями необходимо создать и заполнить файл
+### 4. Для работы с переменными окружениями необходимо создать и заполнить файл .env:
 
-    - # Database
-    - POSTGRES_DB='ob_db'
-    - POSTGRES_USER='postgres'
-    - POSTGRES_PASSWORD=/ваш пароль/
-    - POSTGRES_HOST='127.0.0.1'
-    - POSTGRES_PORT=/обычно это'5432'/
+    # Database
+    POSTGRES_DB='ob_db'
+    POSTGRES_USER='postgres'
+    POSTGRES_PASSWORD=/ваш пароль/
+    POSTGRES_HOST='127.0.0.1'
+    POSTGRES_PORT=/обычно это'5432'/
 
     - SECRET_KEY=/ключ Django из файла config.settings/
 
-### 5. Для создания администратора (createsuperuser)
+### 5. Для создания администратора (createsuperuser):
 
     - заполните поля email, PASSWORD. users/management/commands/csu.py
     Команда для Windows
@@ -53,13 +53,9 @@
 ### 6. Для запуска приложения:
 
     Команда для Windows:
-    - python manage.py makemigrations
-    - python manage.py migrate
     - python manage.py runserver
 
     Команда для Unix:
-    - python3 manage.py makemigrations
-    - python3 manage.py migrate
     - python3 manage.py runserver
 
 ### 7. Для запуска тестов:
