@@ -12,7 +12,7 @@ from users.models import User
 class UserListAPIView(ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated, IsStaff]
+    permission_classes = [IsStaff]
 
 
 class UserCreateAPIView(CreateAPIView):
@@ -24,6 +24,10 @@ class UserRetrieveAPIView(RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        user = self.request.user
+        return User.objects.filter(id=user.id)
 
 
 class UserUpdateAPIView(UpdateAPIView):
@@ -40,6 +44,10 @@ class UserDestroyAPIView(DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated, IsStaff]
+
+    def get_queryset(self):
+        user = self.request.user
+        return User.objects.filter(id=user.id)
 
 
 class UserTokenObtainPairView(TokenObtainPairView):
