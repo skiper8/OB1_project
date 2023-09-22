@@ -43,7 +43,7 @@ class UserUpdateAPIView(UpdateAPIView):
 class UserDestroyAPIView(DestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated, IsStaff]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
