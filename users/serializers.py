@@ -27,15 +27,22 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
-        fields = ['email', 'password', 'first_name', 'last_name']
+        fields = ['email', 'password', 'first_name', 'last_name', 'phone']
 
     def create(self, validated_data):
         user = User.objects.create(**validated_data)
         user.set_password(user.password)
         user.save()
         return user
+
+
+class UserRetrieveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['email', 'password', 'first_name', 'last_name', 'phone', 'last_login', 'date_joined']
 
 
 class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
