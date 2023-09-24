@@ -2,6 +2,7 @@ from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from users.models import User
+from users.validators import PhoneValidator, EmailValidator
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -18,6 +19,7 @@ class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email', 'password']
+        validators = [EmailValidator(field='email')]
 
     def create(self, validated_data):
         user = User.objects.create(**validated_data)
@@ -31,6 +33,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'password', 'first_name', 'last_name', 'phone']
+        validators = [PhoneValidator(field='phone')]
 
     def create(self, validated_data):
         user = User.objects.create(**validated_data)
