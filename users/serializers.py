@@ -29,11 +29,12 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=True, min_length=2, max_length=40)
 
     class Meta:
         model = User
         fields = ['email', 'password', 'first_name', 'last_name', 'phone']
-        validators = [PhoneValidator(field='phone')]
+        validators = [PhoneValidator(field='phone'), EmailValidator(field='email')]
 
     def create(self, validated_data):
         user = User.objects.create(**validated_data)
@@ -45,7 +46,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 class UserRetrieveSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'password', 'first_name', 'last_name', 'phone', 'last_login', 'date_joined']
+        fields = ['email', 'password', 'first_name', 'last_name', 'phone', 'date_joined']
 
 
 class UserTokenObtainPairSerializer(TokenObtainPairSerializer):
