@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from users.validators import EmailValidator
 
 NULLABLE = {'blank': True, 'null': True}
 
